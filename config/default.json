@@ -1,5 +1,5 @@
 {
-    "mongoURI": "mongodb://heroku_v7l9xvr5:1qs0ti35q2rgre49d5uc7libv7@ds135234.mlab.com:35234/heroku_v7l9xvr5",
+    "mongoURI": "mongodb+srv://bootcamp_infnet:Yz9llediUYHkj2mY@cluster0.kuyqa.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
     "jwtSecret": "<secret>",
     "githubToken": "<yoursecrectaccesstoken>"
   }
