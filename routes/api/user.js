@@ -1,23 +1,71 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config');
+const User = require('../../models/User');
+const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
-// @route    POST api/users
+// @route    POST api/user
 // @desc     Register user
 // @access   Public
 
 router.get('/',[], async (req, res) => {
-  console.log('oi')
-  return res
-          .status(200)
-          .json({ result: [{ msg: 'ok!' }] });
-
+  try {
+    const user = await User.find({})
+    res.json(user)
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send('Server Error')
+  }
 })
 
-router.post(
-  '/',
-  [],
+router.post('/',
+  [
+    check('name', 'Name is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 })
+],
   async (req, res) => {
+    try {
+      const errors = validationResult(req)
+      console.error(errors)
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+      }
+
+      const { name, email, password } = req.body
+      console.log(`req ${JSON.stringify(req.body)}`)
+      let user = await User.findOne({ email })
+      if (user) {
+          return res
+            .status(400)
+            .json({ errors: [{ msg: 'User already exists' }] });
+      }
+      user = new User({
+        name,
+        email,
+        password
+      });
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+      await user.save();
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+      if (user.id){
+        res.json(user);
+      }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
    
   }
 );
