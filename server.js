@@ -23,8 +23,8 @@ app.use('/api/user', require('./routes/api/user'))
 // app.get('/', (req, res) => res.send('Hello World!'))
 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname))
-  })
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname))
+//   })
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

@@ -2,4 +2,5 @@
     "mongoURI": "mongodb+srv://bootcamp_infnet:Yz9llediUYHkj2mY@cluster0.kuyqa.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
     "jwtSecret": "<secret>",
     "githubToken": "<yoursecrectaccesstoken>"
+
   }
