@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path');
+var cors = require('cors')
 var bodyParser = require('body-parser')
 const connectDB = require('./config/db');
 const app = express()
@@ -7,6 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 
 // Init Middleware
+app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
