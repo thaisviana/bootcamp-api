@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../../models/User');
+const auth = require('../../middleaware/auth')
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -7,7 +8,7 @@ const bcrypt = require('bcryptjs');
 // @route    GET /user/:email
 // @desc     DETAIL user
 // @access   Public
-router.get('/:email', [], async (req, res, next) => {
+router.get('/:email', auth, async (req, res, next) => {
   try {
     let param_email = req.params["email"]
     const user = await User.findOne({ email: param_email })
@@ -91,7 +92,6 @@ router.patch('/:userId', [], async (request, res, next) => {
     if(bodyRequest.senha){
       bodyRequest.senha = await bcrypt.hash(bodyRequest.senha, salt)
     }
-    console.log(bodyRequest)
     const update = { $set: bodyRequest }
     const user = await User.findByIdAndUpdate(id, update, { new: true })
     if (user) {

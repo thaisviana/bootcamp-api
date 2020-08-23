@@ -1,5 +1,5 @@
 {
     "mongoURI": "mongodb+srv://bootcamp_infnet:Yz9llediUYHkj2mY@cluster0.kuyqa.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret": "<secret>",
+    "jwtSecret": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6IjBmNzU5OWVlLTVjMGYtNGEzMy1hMjk3LTY3NDNlMGUzZDAwOSIsImlhdCI6MTU5ODIxODkxNSwiZXhwIjoxNTk4MjIyNTE1fQ.87GJlbjB8cML34cKnxTjspPURMUpjIvbZZhH2K9kvjY",
     "githubToken": "<yoursecrectaccesstoken>"
 }
