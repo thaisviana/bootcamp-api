@@ -1,8 +1,8 @@
 const express = require('express');
+const router = express.Router();
 const User = require('../../models/User');
 const auth = require('../../middleaware/auth')
 const { check, validationResult } = require('express-validator');
-const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 // @route    GET /user/:email
